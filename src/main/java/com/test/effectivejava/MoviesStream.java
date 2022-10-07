@@ -30,19 +30,26 @@ public class MoviesStream {
                 .collect(Collectors.toList());
 
         movies.forEach(System.out::println);
+        System.out.println("xxxxxxxxxxx");
 
         Optional<BigDecimal> averageRating = Optional.of(movies.stream()
                 .map(Movie::getRating)
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
                 .divide(BigDecimal.valueOf(movies.size()), 1, RoundingMode.HALF_UP));
-
-        Optional<Movie> bestMovie = movies.stream().max(Comparator.comparing(Movie::getRating));
-        Optional<Movie> worstMovie = movies.stream().min(Comparator.comparing(Movie::getRating));
         System.out.print("Average rating of movies is: ");
         averageRating.ifPresent(System.out::println);
-        System.out.print("Worst rating movie is: ");
-        worstMovie.ifPresent(System.out::println);
-        System.out.print("Best rating movie is: ");
-        bestMovie.ifPresent(System.out::println);
+
+//        Optional<Movie> bestMovie = movies.stream().max(Comparator.comparing(Movie::getRating));
+//        Optional<Movie> worstMovie = movies.stream().min(Comparator.comparing(Movie::getRating));
+//        System.out.print("Worst rating movie is: ");
+//        worstMovie.ifPresent(System.out::println);
+//        System.out.print("Best rating movie is: ");
+//        bestMovie.ifPresent(System.out::println);
+
+        System.out.println("xxxxxxxxxxx");
+        movies.stream().max(Comparator.comparing(Movie::getRating)).ifPresent(System.out::println);
+        movies.stream().min(Comparator.comparing(Movie::getRating)).ifPresent(System.out::println);
+
+
     }
 }
